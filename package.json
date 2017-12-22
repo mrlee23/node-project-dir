@@ -1,0 +1,36 @@
+{
+  "name": "project-dir",
+  "version": "0.0.1",
+  "description": "Manipulate project directories and files.",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha test/test.js",
+    "run": "node index.js"
+  },
+  "author": "Dongsoo Lee",
+  "license": "MIT",
+  "dependencies": {
+    "deasync": "^0.1.12",
+    "mocha": "^4.0.1",
+    "one-mocha": "0.0.6"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrlee23/node-project-dir.git"
+  },
+  "keywords": [
+    "project",
+    "directory",
+    "file",
+    "manipulate"
+  ],
+  "bugs": {
+    "url": "https://github.com/mrlee23/node-project-dir/issues"
+  },
+  "homepage": "https://github.com/mrlee23/node-project-dir#readme"
+}
