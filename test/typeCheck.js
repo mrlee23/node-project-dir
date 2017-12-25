@@ -54,7 +54,23 @@ class typeCheckTester {
 					 args: [[path.join(__dirname, "./test-project/sample"), true],
 							[path.join(__dirname, "./test-project/directory-not-exist"), false]]
 				 }
-			 }]
+			 },
+			 {
+				 method: typeCheck.isRoot,
+				 name: 'isRoot',
+				 this: typeCheck,
+				 test: {
+					 assert: 'equal',
+					 args: [["/", true],
+							[__dirname, false],
+							["../../../../../../../../../../../../../../", true],
+						   	[[], false],
+						   	[{}, false],
+						   	[true, false],
+							[false, false]]
+				 }
+			 }
+			]
 		);
 	}
 }
