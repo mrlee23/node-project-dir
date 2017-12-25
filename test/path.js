@@ -47,6 +47,18 @@ class pathTester {
 							[__dirname, __filename, false],
 							['/', "../../../../../../../", true]]
 				 }]
+			 },
+			 {
+				 method: path.isParent,
+				 this: path,
+				 name: 'isParent',
+				 test:
+				 [{
+					 assert: 'equal',
+					 args: [[__dirname, __dirname, false],
+							[__dirname, path.resolve(__dirname, "../"), false],
+							[path.resolve(__dirname, "../"), __dirname, true]]
+				 }]
 			 }]
 			,{truncate: 40}
 		);
