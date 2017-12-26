@@ -86,6 +86,14 @@ class indexTester {
 							   ["/", path.resolve(__dirname, 'test-project/')],
 							   ["../", null]]
 					}
+				},
+				{
+					method: (arg) => projectDir.parse(arg).root,
+					name: 'parse',
+					test: {
+						assert: 'equal',
+						args: [["/abcd", path.resolve(__dirname, 'test-project')]]
+					}
 				}
 			]
 		);

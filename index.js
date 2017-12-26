@@ -57,6 +57,18 @@ class ProjectDir {
 		return _path;
 	}
 
+	parse (_path) {
+		if (typeof _path !== 'string') throw new Error(`_path(${_path}) is not a string type.`);
+		let rPath = this.resolve(_path);
+		let ret = {
+			root: this.basedir,
+			names: this.basename,
+			path: path.relative(this.basedir, rPath),
+			wd: this.wd
+		};
+		console.log(ret);
+		return ret;
+	}
 }
 
 module.exports = ProjectDir;
