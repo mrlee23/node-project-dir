@@ -28,9 +28,9 @@ console.log(myProjectDir.resolve('/abcd'));
 ## API
 ### constructor
 ### getter/setter
-- `basename` : get/set basename for dominating file.
-- `basedir` : get/set project's base directory.
-- `wd` : get/set project's working directory.
+- `basename(query names)` : get/set basename for dominating file.
+- `basedir(string path) ` : get/set project's base directory.
+- `wd(string path)` : get/set project's working directory.
 
 ### project path parsing
 - `resolve`(string path) : resolving path based on basedir
