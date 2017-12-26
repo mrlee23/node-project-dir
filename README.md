@@ -34,4 +34,14 @@ console.log(myProjectDir.resolve('/abcd'));
 
 ### project path parsing
 - `resolve`(string path) : resolving path based on basedir
-- `parse`(string path) : parsing path based on basedir
+- `parse`(string path) : parsing path based on basedir. below output is result of path(+ sign means `path.resolve`, * sign means `path.relative`, path means argument, others are property name).
+```javascript
+{
+	root: <basedir>,
+	names: <basename>,
+	wd: <wd>,
+	path: <wd*path>,
+	abs: <basedir*(wd+path)>,
+	realPath: <wd+path>
+}
+```
