@@ -1,6 +1,6 @@
 {
 	"name": "project-dir",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"description": "Manipulate project directories and files.",
 	"main": "index.js",
 	"directories": {
@@ -8,10 +8,10 @@
 		"test": "test"
 	},
 	"dependencies": {
-		"one-mocha": "0.0.8"
 	},
 	"devDependencies": {
-		"mocha": "^4.0.1"
+		"mocha": "^4.0.1",
+		"one-mocha": "0.0.8"
 	},
 	"scripts": {
 		"test": "mocha test/test.js"

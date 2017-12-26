@@ -4,8 +4,8 @@
  * @author Dongsoo Lee <mrlee_23@naver.com>
  * @copyright 2017 Dongsoo Lee <mrlee_23@naver.com>
  * @module index
- * @version 0.0.1
- * @since 0.0.1
+ * @version 0.0.2
+ * @since 0.0.2
  * @created 2017-12-26
  *
  * @requires module:./lib/typeCheck.js
@@ -22,8 +22,8 @@ const type = require('./lib/typeCheck.js'),
  * @class
  * @name ProjectDir
  * @classdesc project-dir main class
- * @version 0.0.1
- * @since 0.0.1
+ * @version 0.0.2
+ * @since 0.0.2
  * @created 2017-12-26
  */
 class ProjectDir {
@@ -31,8 +31,8 @@ class ProjectDir {
 	 * @public
 	 * @instance
 	 * @function constructor
-	 * @version 0.0.1
-	 * @since 0.0.1
+	 * @version 0.0.2
+	 * @since 0.0.2
 	 * @created 2017-12-26
 	 * @memberof module:index~ProjectDir
 	 * @description Generating new project directory object.
@@ -53,8 +53,8 @@ class ProjectDir {
 	 * @public
 	 * @instance
 	 * @function setbasename
-	 * @version 0.0.1
-	 * @since 0.0.1
+	 * @version 0.0.2
+	 * @since 0.0.2
 	 * @created 2017-12-26
 	 * @memberof module:index~ProjectDir
 	 * @description Set dominating file or directory names.
@@ -75,8 +75,8 @@ class ProjectDir {
 	 * @public
 	 * @instance
 	 * @function setbasedir
-	 * @version 0.0.1
-	 * @since 0.0.1
+	 * @version 0.0.2
+	 * @since 0.0.2
 	 * @created 2017-12-26
 	 * @memberof module:index~ProjectDir
 	 * @description Set project's base directory.
@@ -109,8 +109,8 @@ class ProjectDir {
 	 * @public
 	 * @instance
 	 * @function setwd
-	 * @version 0.0.1
-	 * @since 0.0.1
+	 * @version 0.0.2
+	 * @since 0.0.2
 	 * @created 2017-12-26
 	 * @memberof module:index~ProjectDir
 	 * @description Set working directory based on current project's base directory.
@@ -130,8 +130,8 @@ class ProjectDir {
 	 * @public
 	 * @instance
 	 * @function resolve
-	 * @version 0.0.1
-	 * @since 0.0.1
+	 * @version 0.0.2
+	 * @since 0.0.2
 	 * @created 2017-12-26
 	 * @memberof module:index~ProjectDir
 	 * @description Resolving the path based on current project's base directory.
@@ -163,8 +163,8 @@ class ProjectDir {
 	 * @public
 	 * @instance
 	 * @function parse
-	 * @version 0.0.1
-	 * @since 0.0.1
+	 * @version 0.0.2
+	 * @since 0.0.2
 	 * @created 2017-12-26
 	 * @memberof module:index~ProjectDir
 	 * @description Parsing a path.
