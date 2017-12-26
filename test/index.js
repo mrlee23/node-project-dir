@@ -84,7 +84,7 @@ class indexTester {
 							   ["efgh", path.resolve(__dirname, 'test-project/abcd/efgh')],
 							   ["../", path.resolve(__dirname, 'test-project/abcd/')],
 							   ["/", path.resolve(__dirname, 'test-project/')],
-							   ["../", null]]
+							   ["../", path.resolve(__dirname, 'test-project')]]
 					}
 				},
 				{
@@ -93,6 +93,25 @@ class indexTester {
 					test: {
 						assert: 'equal',
 						args: [["/abcd", path.resolve(__dirname, 'test-project')]]
+					}
+				},
+				{
+					method: (arg) => {
+						return {
+							root: projectDir.parse(arg).root,
+							abs: projectDir.parse(arg).abs,
+							realPath: projectDir.parse(arg).realPath
+						};
+					},
+					name: 'parse',
+					this: projectDir,
+					test: {
+						assert: 'deepEqual',
+						args: [["/abcd", {
+							root: path.resolve(__dirname, 'test-project'),
+							abs: '/abcd',
+							realPath: path.resolve(__dirname, 'test-project/abcd')
+						}]]
 					}
 				}
 			]

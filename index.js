@@ -37,9 +37,10 @@ class ProjectDir {
 	get basedir () { return this._basedir; }
 
 	set wd (_path) {
-		this._workingDir = this.resolve(_path);
+		let wd = this.resolve(_path);
+		wd != null && (this._workingDir = wd);
 	}
-	get wd () { return this._workingDir; }
+	get wd () { return this._workingDir || this.basedir; }
 
 	resolve (_path) {
 		if (typeof _path !== 'string') throw new Error(`_path(${_path}) is not a string type.`);
@@ -63,10 +64,11 @@ class ProjectDir {
 		let ret = {
 			root: this.basedir,
 			names: this.basename,
-			path: path.relative(this.basedir, rPath),
-			wd: this.wd
+			wd: this.wd,
+			path: path.relative(this.wd, rPath),
+			abs: "/"+path.relative(this.basedir, path.resolve(this.wd, rPath)),
+			realPath: path.resolve(this.wd, rPath)
 		};
-		console.log(ret);
 		return ret;
 	}
 }
