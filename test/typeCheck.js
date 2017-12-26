@@ -69,6 +69,21 @@ class typeCheckTester {
 						   	[true, false],
 							[false, false]]
 				 }
+			 },
+			 {
+				 method: typeCheck.isAbs,
+				 name: 'isAbs',
+				 this: typeCheck,
+				 test: {
+					 assert: 'equal',
+					 args: [["/", true],
+							[__dirname, true],
+							["../../../../../../../../../../../../../../", false],
+						   	[[], false],
+						   	[{}, false],
+						   	[true, false],
+							[false, false]]
+				 }
 			 }
 			]
 		);
