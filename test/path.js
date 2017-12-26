@@ -1,9 +1,9 @@
-const genMocha = require('one-mocha'),
+const oneMocha = require('one-mocha'),
 	  path = require('../lib/path.js');
 
 class pathTester {
 	test () {
-		genMocha(
+		oneMocha(
 			[{
 				method: path.toRoot,
 				this: path,

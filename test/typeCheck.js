@@ -1,10 +1,10 @@
-const genMocha = require('one-mocha'),
+const oneMocha = require('one-mocha'),
 	  path = require('path'),
 	  typeCheck = require('../lib/typeCheck.js');
 
 class typeCheckTester {
 	test () {
-		genMocha(
+		oneMocha(
 			[{
 				method: typeCheck.isArrayQuery,
 				name: "isArrayQuery",

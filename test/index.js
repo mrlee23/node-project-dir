@@ -1,11 +1,11 @@
-const genMocha = require('one-mocha'),
+const oneMocha = require('one-mocha'),
 	  path = require('path'),
 	  index = require('../index.js');
 
 let projectDir = new index(path.resolve(__dirname, 'test-project'), "node_modules");
 class indexTester {
 	test () {
-		genMocha(
+		oneMocha(
 			[
 				{
 					method: (arg) => { projectDir.basename = arg;
