@@ -12,7 +12,24 @@
  * @requires module:./lib/path.js
  */
 /**
- * @typedef {string|RegExp|Array} query
+ * For matching file name.
+ * @typedef {string|RegExp|Array} Query
+ */
+/**
+ * Represent file system path, include relative and absolute paths.
+ * @typedef {string} Path
+ */
+/**
+ * Absolute path of real file system.
+ * @typedef {string} AbsPath
+ */
+/**
+ * Represent managed path in project, include relative and absolute paths.
+ * @typedef {string} ProjectPath
+ */
+/**
+ * Represent managed absolute path in project.
+ * @typedef {string} ProjectAbsPath
  */
 
 const type = require('./lib/typeCheck.js'),
@@ -37,8 +54,8 @@ class ProjectDir {
 	 * @memberof module:index~ProjectDir
 	 * @description Generating new project directory object.
 	 *
-	 * @param {string} currentPath - Starting point for search base directory. This path must be an existing file or directory.
-	 * @param {query} basename - Dominating file or directory names.
+	 * @param {Path} currentPath - Starting point for search base directory. This path must be an existing file or directory.
+	 * @param {Query} basename - Dominating file or directory names.
 	 *
 	 * @example
 	 * .constructor('./', 'node_modules')
@@ -59,14 +76,14 @@ class ProjectDir {
 	 * @memberof module:index~ProjectDir
 	 * @description Set dominating file or directory names.
 	 *
-	 * @param {query} basename - Dominating file or directory names.
-	 * @throws {Error} Not a query type.
+	 * @param {Query} basename - Dominating file or directory names.
+	 * @throws {Error} Not a Query type.
 	 *
 	 * @example
 	 * .setbasename(['.git', 'package.json'])
 	 */
 	set basename (basename) {
-		if (!type.isQuery(basename)) throw new Error(`basename(${basename}) is not a query type.`);
+		if (!type.isQuery(basename)) throw new Error(`basename(${basename}) is not a Query type.`);
 		this._basename = basename;
 	}
 	get basename () { return this._basename; }
@@ -81,7 +98,7 @@ class ProjectDir {
 	 * @memberof module:index~ProjectDir
 	 * @description Set project's base directory.
 	 *
-	 * @param {string} _path - Strting point for search base directory.
+	 * @param {Path} _path - Strting point for search base directory.
 	 * @throws {Error} Failed searching base directory of project.
 	 *
 	 * @example
@@ -115,7 +132,7 @@ class ProjectDir {
 	 * @memberof module:index~ProjectDir
 	 * @description Set working directory based on current project's base directory.
 	 *
-	 * @param {string} _path - Sub path of base directory.
+	 * @param {ProjectPath} _path - Sub path of base directory.
 	 *
 	 * @example
 	 * .setwd('abcdef')
@@ -136,9 +153,9 @@ class ProjectDir {
 	 * @memberof module:index~ProjectDir
 	 * @description Resolving the path based on current project's base directory.
 	 *
-	 * @param {string} _path - to resolve path.
+	 * @param {ProjectPath} _path - to resolve path.
 	 * @throws {Error} _path is not a string type.
-	 * @returns {string} resolved path.
+	 * @returns {Path} resolved path.
 	 *
 	 * @example
 	 * .resolve('/abcd/efgh')
@@ -169,15 +186,14 @@ class ProjectDir {
 	 * @memberof module:index~ProjectDir
 	 * @description Retrieve project path from absolute real path.
 	 *
-	 * @param {string} _path - absolute real path.
+	 * @param {AbsPath} _path - absolute real path.
 	 * @throws {Error} If not a string type, If not an absolute path.
-	 * @returns {string} absolute project path.
+	 * @returns {ProjectAbsPath} absolute project path.
 	 *
 	 * @example
 	 * .retrieve(/home/user/abcd/efgh) // => /abcd/efgh (if /home/user is root)
 	 */
 	retrieve (_path) {
-		this.wd = '/Volumes/Macintosh HD/Users/mrlee23/Documents/Project/node-project-dir/test/test-project/abcdef';
 		if (typeof _path !== 'string') throw new Error(`_path(${_path}) is not a string type.`);
 		if (!path.isAbsolute(_path)) throw new Error(`_path(${_path}) is not an absolute path.`);
 		if (path.equal(this.basedir, _path)) return "/";
@@ -197,7 +213,7 @@ class ProjectDir {
 	 * @memberof module:index~ProjectDir
 	 * @description Parsing a path.
 	 *
-	 * @param {string} _path - to parse path.
+	 * @param {ProjectPath} _path - to parse path.
 	 * @throws {Error} _path is not a string type.
 	 * @returns {Object} parsed path's object.
 	 *

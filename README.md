@@ -28,13 +28,14 @@ console.log(myProjectDir.resolve('/abcd'));
 ## API
 ### constructor
 ### getter/setter
-- `basename(query names)` : get/set basename for dominating file.
-- `basedir(string path) ` : get/set project's base directory.
-- `wd(string path)` : get/set project's working directory.
+- `basename <Query>` : get/set basename for dominating file.
+- `basedir <Path> ` : get/set project's base directory.
+- `wd <Path>` : get/set project's working directory.
 
 ### project path parsing
-- `resolve`(string path) : resolving path based on basedir
-- `parse`(string path) : parsing path based on basedir. below output is result of path(+ sign means `path.resolve`, * sign means `path.relative`, path means argument, others are property name).
+- `resolve <ProjectPath>` : resolving path based on basedir
+- `retrieve <AbsPath>` : Retrieving project path from absolute real path.
+- `parse <ProjectPath>` : parsing path based on basedir. below output is result of path(+ sign means `path.resolve`, * sign means `path.relative`, path means argument, others are property name).
 ```javascript
 {
 	root: <basedir>,
