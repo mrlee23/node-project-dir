@@ -4,7 +4,7 @@
  * @author Dongsoo Lee <mrlee_23@naver.com>
  * @copyright 2017 Dongsoo Lee <mrlee_23@naver.com>
  * @module index
- * @version 0.0.3
+ * @version 0.0.4
  * @since 0.0.1
  * @created 2017-12-26
  *
@@ -39,7 +39,7 @@ const type = require('./lib/typeCheck.js'),
  * @class
  * @name ProjectDir
  * @classdesc project-dir main class
- * @version 0.0.3
+ * @version 0.0.4
  * @since 0.0.1
  * @created 2017-12-26
  */
@@ -48,7 +48,7 @@ class ProjectDir {
 	 * @public
 	 * @instance
 	 * @function constructor
-	 * @version 0.0.3
+	 * @version 0.0.4
 	 * @since 0.0.1
 	 * @created 2017-12-26
 	 * @memberof module:index~ProjectDir
@@ -70,7 +70,7 @@ class ProjectDir {
 	 * @public
 	 * @instance
 	 * @function setbasename
-	 * @version 0.0.3
+	 * @version 0.0.4
 	 * @since 0.0.1
 	 * @created 2017-12-26
 	 * @memberof module:index~ProjectDir
@@ -92,7 +92,7 @@ class ProjectDir {
 	 * @public
 	 * @instance
 	 * @function setbasedir
-	 * @version 0.0.3
+	 * @version 0.0.4
 	 * @since 0.0.1
 	 * @created 2017-12-26
 	 * @memberof module:index~ProjectDir
@@ -126,7 +126,7 @@ class ProjectDir {
 	 * @public
 	 * @instance
 	 * @function setwd
-	 * @version 0.0.3
+	 * @version 0.0.4
 	 * @since 0.0.1
 	 * @created 2017-12-26
 	 * @memberof module:index~ProjectDir
@@ -147,7 +147,7 @@ class ProjectDir {
 	 * @public
 	 * @instance
 	 * @function resolve
-	 * @version 0.0.3
+	 * @version 0.0.4
 	 * @since 0.0.1
 	 * @created 2017-12-26
 	 * @memberof module:index~ProjectDir
@@ -207,7 +207,7 @@ class ProjectDir {
 	 * @public
 	 * @instance
 	 * @function parse
-	 * @version 0.0.3
+	 * @version 0.0.4
 	 * @since 0.0.1
 	 * @created 2017-12-26
 	 * @memberof module:index~ProjectDir
