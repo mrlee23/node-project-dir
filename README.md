@@ -1,4 +1,7 @@
-# node-project-dir ![Build Status](https://secure.travis-ci.org/mrlee23/node-project-dir.png)
+# node-project-dir [![Build Status](https://secure.travis-ci.org/mrlee23/node-project-dir.png)](https://travis-ci.org/mrlee23/node-project-dir)
+
+[![NPM](https://nodei.co/npm/project-dir.png)](https://nodei.co/npm/project-dir/)
+
 >Manipulate project directories and files.
 
 ## Install
