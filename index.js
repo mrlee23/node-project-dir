@@ -162,6 +162,34 @@ class ProjectDir {
 	/**
 	 * @public
 	 * @instance
+	 * @function retrieve
+	 * @version 0.0.4
+	 * @since 0.0.4
+	 * @created 2017-12-27
+	 * @memberof module:index~ProjectDir
+	 * @description Retrieve project path from absolute real path.
+	 *
+	 * @param {string} _path - absolute real path.
+	 * @throws {Error} If not a string type, If not an absolute path.
+	 * @returns {string} absolute project path.
+	 *
+	 * @example
+	 * .retrieve(/home/user/abcd/efgh) // => /abcd/efgh (if /home/user is root)
+	 */
+	retrieve (_path) {
+		this.wd = '/Volumes/Macintosh HD/Users/mrlee23/Documents/Project/node-project-dir/test/test-project/abcdef';
+		if (typeof _path !== 'string') throw new Error(`_path(${_path}) is not a string type.`);
+		if (!path.isAbsolute(_path)) throw new Error(`_path(${_path}) is not an absolute path.`);
+		if (path.equal(this.basedir, _path)) return "/";
+		if (!path.isParent(this.basedir, _path)) return null;
+		let relPath = _path.substr(this.basedir.length);
+		if (relPath[0] != '/') relPath = '/' + relPath;
+		return relPath;
+	}
+
+	/**
+	 * @public
+	 * @instance
 	 * @function parse
 	 * @version 0.0.3
 	 * @since 0.0.1

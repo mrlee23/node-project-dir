@@ -74,6 +74,18 @@ class indexTester {
 					}
 				},
 				{
+					method: projectDir.retrieve,
+					name: 'retrieve',
+					this: projectDir,
+					test: {
+						assert: 'equal',
+						args: [[path.resolve(__dirname, 'test-project'), '/'],
+							   [path.resolve(__dirname, 'test-project/abcdef'), '/abcdef'],
+							   [path.resolve(__dirname, 'test-project/efgh'), '/efgh'],
+							   [path.resolve(__dirname, '../'), null]]
+					}
+				},
+				{
 					method: (arg) => { projectDir.wd = arg;
 									   return projectDir.wd;},
 					name: 'get/set wd',
