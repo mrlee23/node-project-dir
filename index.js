@@ -145,7 +145,7 @@ class ProjectDir {
 	 */
 	resolve (_path) {
 		if (typeof _path !== 'string') throw new Error(`_path(${_path}) is not a string type.`);
-		if (type.isAbs(_path)) {
+		if (path.isAbsolute(_path)) {
 			_path = path.resolve(this.basedir, _path.substr(1));
 		} else {
 			_path = path.resolve(this.wd || this.basedir, _path);
