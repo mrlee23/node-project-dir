@@ -1,5 +1,5 @@
 # node-project-dir
-
+https://secure.travis-ci.org/[mrlee23]/[node-project-dir].png
 >Manipulate project directories and files.
 
 ## Install
