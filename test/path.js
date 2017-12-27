@@ -14,7 +14,7 @@ class pathTester {
 						assert: 'equal',
 						args: [[__dirname, () => {}, "/"],
 							   ["./", () => {}, "/"],
-							   ["./", {resolve: false}, () => {}, "../../../../../../../"],
+							   ["./", {resolve: false}, () => {}, path.relative('./', '/')+'/'],
 							   [__dirname, (path) => path==__dirname, __dirname]]
 					},
 					{
