@@ -28,6 +28,11 @@ console.log(myProjectDir.resolve('/abcd'));
 ```
 
 ## API
+Don't confuse `ProjectPath` argument. It has a difference meaning with normal path.
+When the argument takes `ProjectPath`, do not use absolute path in real file system.
+This moudle handles root as sub directory of base directory when argument is `ProjectPath`.
+
+eg. If base directory is "/home/user/abcd", the `Path`'s "/efgh" means "/efgh" and the ``ProjectPath`'s "/efgh" means "/home/user/abcd/efgh".
 ### constructor
 ### getter/setter
 - `basename <Query>` : get/set basename for dominating file.
@@ -35,7 +40,7 @@ console.log(myProjectDir.resolve('/abcd'));
 - `wd <Path>` : get/set project's working directory.
 
 ### project path parsing
-- `resolve <ProjectPath>` : resolving path based on basedir
+- `resolve <ProjectPath>` : Resolving path based on basedir
 - `retrieve <AbsPath>` : Retrieving project path from absolute real path.
 - `parse <ProjectPath>` : parsing path based on basedir. below output is result of path(+ sign means `path.resolve`, * sign means `path.relative`, path means argument, others are property name).
 ```javascript

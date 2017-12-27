@@ -125,6 +125,26 @@ class indexTester {
 							realPath: path.resolve(__dirname, 'test-project/abcd')
 						}]]
 					}
+				},
+				{
+					method: (arg) => {
+						projectDir.wd = projectDir.retrieve(path.resolve(projectDir.basedir, "sample"));
+						return {
+							root: projectDir.parse(arg).root,
+							abs: projectDir.parse(arg).abs,
+							realPath: projectDir.parse(arg).realPath
+						};
+					},
+					name: 'parse',
+					this: projectDir,
+					test: {
+						assert: 'deepEqual',
+						args: [["/abcd", {
+							root: path.resolve(__dirname, 'test-project'),
+							abs: '/abcd',
+							realPath: path.resolve(__dirname, 'test-project/abcd')
+						}]]
+					}
 				}
 			]
 		);
