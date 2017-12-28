@@ -1,4 +1,8 @@
-# node-project-dir [![Build Status](https://secure.travis-ci.org/mrlee23/node-project-dir.png)](https://travis-ci.org/mrlee23/node-project-dir)
+# node-project-dir
+
+[![Build Status](https://secure.travis-ci.org/mrlee23/node-project-dir.png)](https://travis-ci.org/mrlee23/node-project-dir)
+[![Version](https://img.shields.io/npm/v/project-dir.svg)](https://www.npmjs.com/package/project-dir)
+[![License](https://img.shields.io/github/license/mrlee23/node-project-dir.svg)](https://github.com/mrlee23/node-project-dir/blob/master/LICENSE)
 
 [![NPM](https://nodei.co/npm/project-dir.png)](https://nodei.co/npm/project-dir/)
 
@@ -32,7 +36,7 @@ Don't confuse `ProjectPath` argument. It has a difference meaning with normal pa
 When the argument takes `ProjectPath`, do not use absolute path in real file system.
 This moudle handles root as sub directory of base directory when argument is `ProjectPath`.
 
-eg. If base directory is "/home/user/abcd", the `Path`'s "/efgh" means "/efgh" and the ``ProjectPath`'s "/efgh" means "/home/user/abcd/efgh".
+eg. If base directory is "/home/user/abcd", the `Path`'s "/efgh" means "/efgh" and the `ProjectPath`'s "/efgh" means "/home/user/abcd/efgh".
 ### constructor
 ### getter/setter
 - `basename <Query>` : get/set basename for dominating file.
