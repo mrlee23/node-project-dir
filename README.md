@@ -20,6 +20,8 @@ https://mrlee23.github.io/node-project-dir/
 ### Dev Depencencies
 - [mocha](https://github.com/mochajs/mocha) : unit test framework
 - [one-mocha](https://github.com/mrlee23/node-one-mocha) : mocha tester generating module
+- [js-doc](https://github.com/jsdoc3/jsdoc) : documentation generator
+- [minami](https://github.com/Nijikokun/minami) : jsdoc template
 
 ### Test
 ```shell
