@@ -7,14 +7,16 @@
 		"lib": "lib",
 		"test": "test"
 	},
-	"dependencies": {
-	},
+	"dependencies": {},
 	"devDependencies": {
+		"jsdoc": "^3.5.5",
+		"minami": "^1.2.3",
 		"mocha": "^4.0.1",
 		"one-mocha": "0.0.8"
 	},
 	"scripts": {
-		"test": "mocha test/test.js"
+		"test": "mocha test/test.js",
+		"doc": "jsdoc *.js lib/*.js -t ./node_modules/minami -d ${PUBLISHED_DIR}"
 	},
 	"repository": {
 		"type": "git",
