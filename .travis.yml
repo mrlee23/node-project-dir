@@ -11,6 +11,6 @@ node_js:
 before_script:
   - git config --global user.email "mrlee_23@naver.com"
   - git config --global user.name "mrlee23"
+after_success:
   - npm run doc
   - bash ./build.sh
-  - git checkout master
