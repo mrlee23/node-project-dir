@@ -13,6 +13,9 @@
 npm install project-dir
 ```
 
+## Documentation
+https://mrlee23.github.io/node-project-dir/
+
 ## Unit Test
 ### Dev Depencencies
 - [mocha](https://github.com/mochajs/mocha) : unit test framework
