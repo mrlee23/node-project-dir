@@ -16,7 +16,7 @@
 	},
 	"scripts": {
 		"test": "mocha test/test.js",
-		"doc": "jsdoc *.js lib/*.js -t ./node_modules/minami -d ${PUBLISHED_DIR}"
+		"doc": "jsdoc *.js lib/*.js -R README.md -t ./node_modules/minami -d ${PUBLISHED_DIR}"
 	},
 	"repository": {
 		"type": "git",
