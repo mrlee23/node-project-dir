@@ -1,4 +1,4 @@
-# node-project-dir
+# [node-project-dir](https://github.com/mrlee23/node-project-dir)
 
 [![Build Status](https://secure.travis-ci.org/mrlee23/node-project-dir.png)](https://travis-ci.org/mrlee23/node-project-dir)
 [![Version](https://img.shields.io/npm/v/project-dir.svg)](https://www.npmjs.com/package/project-dir)
@@ -14,7 +14,7 @@ npm install project-dir
 ```
 
 ## Documentation
-https://mrlee23.github.io/node-project-dir/
+- [on GitHub Pages](https://mrlee23.github.io/node-project-dir/)
 
 ## Unit Test
 ### Dev Depencencies
