@@ -4,7 +4,7 @@
  * @author Dongsoo Lee <mrlee_23@naver.com>
  * @copyright 2018 Dongsoo Lee <mrlee_23@naver.com>
  * @module index
- * @version 0.1.0
+ * @version 0.1.1
  * @since 0.0.1
  * @created 2017-12-26
  *
@@ -39,7 +39,7 @@ const type = require('./lib/typeCheck.js'),
  * @class
  * @name ProjectDir
  * @classdesc project-dir main class
- * @version 0.1.0
+ * @version 0.1.1
  * @since 0.0.1
  * @created 2017-12-26
  */
@@ -48,7 +48,7 @@ class ProjectDir {
 	 * @public
 	 * @instance
 	 * @function constructor
-	 * @version 0.1.0
+	 * @version 0.1.1
 	 * @since 0.0.1
 	 * @created 2017-12-26
 	 * @memberof module:index~ProjectDir
@@ -70,7 +70,7 @@ class ProjectDir {
 	 * @public
 	 * @instance
 	 * @function set_basename
-	 * @version 0.1.0
+	 * @version 0.1.1
 	 * @since 0.0.1
 	 * @created 2017-12-26
 	 * @memberof module:index~ProjectDir
@@ -91,7 +91,7 @@ class ProjectDir {
 	 * @public
 	 * @instance
 	 * @function get_basename
-	 * @version 0.1.0
+	 * @version 0.1.1
 	 * @since 0.0.1
 	 * @created 2018-01-22
 	 * @memberof module:index~ProjectDir
@@ -108,7 +108,7 @@ class ProjectDir {
 	 * @public
 	 * @instance
 	 * @function set_basedir
-	 * @version 0.1.0
+	 * @version 0.1.1
 	 * @since 0.0.1
 	 * @created 2017-12-26
 	 * @memberof module:index~ProjectDir
@@ -143,7 +143,7 @@ class ProjectDir {
 	 * @public
 	 * @instance
 	 * @function get_basedir
-	 * @version 0.1.0
+	 * @version 0.1.1
 	 * @since 0.0.1
 	 * @created 2018-01-22
 	 * @memberof module:index~ProjectDir
@@ -160,7 +160,7 @@ class ProjectDir {
 	 * @public
 	 * @instance
 	 * @function set_wd
-	 * @version 0.1.0
+	 * @version 0.1.1
 	 * @since 0.0.1
 	 * @created 2017-12-26
 	 * @memberof module:index~ProjectDir
@@ -182,7 +182,7 @@ class ProjectDir {
 	 * @public
 	 * @instance
 	 * @function get_wd
-	 * @version 0.1.0
+	 * @version 0.1.1
 	 * @since 0.0.1
 	 * @created 2018-01-22
 	 * @memberof module:index~ProjectDir
@@ -199,7 +199,7 @@ class ProjectDir {
 	 * @public
 	 * @instance
 	 * @function resolve
-	 * @version 0.1.0
+	 * @version 0.1.1
 	 * @since 0.0.1
 	 * @created 2017-12-26
 	 * @memberof module:index~ProjectDir
@@ -232,8 +232,8 @@ class ProjectDir {
 	 * @public
 	 * @instance
 	 * @function retrieve
-	 * @version 0.1.0
-	 * @since 0.1.0
+	 * @version 0.1.1
+	 * @since 0.1.1
 	 * @created 2017-12-27
 	 * @memberof module:index~ProjectDir
 	 * @description Retrieve project path from absolute real path.
@@ -259,7 +259,7 @@ class ProjectDir {
 	 * @public
 	 * @instance
 	 * @function parse
-	 * @version 0.1.0
+	 * @version 0.1.1
 	 * @since 0.0.1
 	 * @created 2017-12-26
 	 * @memberof module:index~ProjectDir

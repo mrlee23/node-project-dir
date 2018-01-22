@@ -1,6 +1,6 @@
 {
 	"name": "project-dir",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"description": "Manipulate project directories and files.",
 	"main": "index.js",
 	"directories": {
