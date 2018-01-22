@@ -69,7 +69,7 @@ class ProjectDir {
 	/**
 	 * @public
 	 * @instance
-	 * @function setbasename
+	 * @function set_basename
 	 * @version 0.1.0
 	 * @since 0.0.1
 	 * @created 2017-12-26
@@ -90,7 +90,7 @@ class ProjectDir {
 	/**
 	 * @public
 	 * @instance
-	 * @function getwd
+	 * @function get_basename
 	 * @version 0.1.0
 	 * @since 0.0.1
 	 * @created 2018-01-22
@@ -107,7 +107,7 @@ class ProjectDir {
 	/**
 	 * @public
 	 * @instance
-	 * @function setbasedir
+	 * @function set_basedir
 	 * @version 0.1.0
 	 * @since 0.0.1
 	 * @created 2017-12-26
@@ -140,7 +140,7 @@ class ProjectDir {
 	/**
 	 * @public
 	 * @instance
-	 * @function basedir
+	 * @function get_basedir
 	 * @version 0.1.0
 	 * @since 0.0.1
 	 * @created 2018-01-22
@@ -157,7 +157,7 @@ class ProjectDir {
 	/**
 	 * @public
 	 * @instance
-	 * @function setwd
+	 * @function set_wd
 	 * @version 0.1.0
 	 * @since 0.0.1
 	 * @created 2017-12-26
@@ -179,7 +179,7 @@ class ProjectDir {
 	/**
 	 * @public
 	 * @instance
-	 * @function getwd
+	 * @function get_wd
 	 * @version 0.1.0
 	 * @since 0.0.1
 	 * @created 2018-01-22
