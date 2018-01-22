@@ -89,15 +89,20 @@ class indexTester {
 					method: (arg) => { projectDir.wd = arg;
 									   return projectDir.wd;},
 					name: 'get/set wd',
-					test: {
-						assert: 'equal',
-						args: [["/", path.resolve(__dirname, 'test-project')],
-							   ["/abcd", path.resolve(__dirname, 'test-project/abcd')],
-							   ["efgh", path.resolve(__dirname, 'test-project/abcd/efgh')],
-							   ["../", path.resolve(__dirname, 'test-project/abcd/')],
-							   ["/", path.resolve(__dirname, 'test-project/')],
-							   ["../", path.resolve(__dirname, 'test-project')]]
-					}
+					test: [
+						{
+							assert: 'equal',
+							args: [["/", path.resolve(__dirname, 'test-project')],
+								   ["/abcd", path.resolve(__dirname, 'test-project/abcd')],
+								   ["efgh", path.resolve(__dirname, 'test-project/abcd/efgh')],
+								   ["../", path.resolve(__dirname, 'test-project/abcd/')],
+								   ["/", path.resolve(__dirname, 'test-project/')]]
+						},
+						{
+							assert: 'throws',
+							args: [["../", Error]]
+						}
+					]
 				},
 				{
 					method: (arg) => projectDir.parse(arg).root,

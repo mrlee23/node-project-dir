@@ -133,12 +133,14 @@ class ProjectDir {
 	 * @description Set working directory based on current project's base directory.
 	 *
 	 * @param {ProjectPath} _path - Sub path of base directory.
+	 * @throws {Error} Out of range of root path.
 	 *
 	 * @example
 	 * .setwd('abcdef')
 	 */
 	set wd (_path) {
 		let wd = this.resolve(_path);
+		if (wd == null) throw new Error(`working directory path(${_path}) is out of root path's range`);
 		wd != null && (this._workingDir = wd);
 	}
 	get wd () { return this._workingDir || this.basedir; }
