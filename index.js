@@ -2,7 +2,7 @@
  * @fileOverview Manipulate project directories and files.
  * @name index.js
  * @author Dongsoo Lee <mrlee_23@naver.com>
- * @copyright 2017 Dongsoo Lee <mrlee_23@naver.com>
+ * @copyright 2018 Dongsoo Lee <mrlee_23@naver.com>
  * @module index
  * @version 0.1.0
  * @since 0.0.1
