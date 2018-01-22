@@ -80,12 +80,28 @@ class ProjectDir {
 	 * @throws {Error} Not a Query type.
 	 *
 	 * @example
-	 * .setbasename(['.git', 'package.json'])
+	 * .basename = ['.git', 'package.json']
 	 */
 	set basename (basename) {
 		if (!type.isQuery(basename)) throw new Error(`basename(${basename}) is not a Query type.`);
 		this._basename = basename;
 	}
+
+	/**
+	 * @public
+	 * @instance
+	 * @function getwd
+	 * @version 0.0.5
+	 * @since 0.0.1
+	 * @created 2018-01-22
+	 * @memberof module:index~ProjectDir
+	 * @description Get basename of current project
+	 *
+	 * @returns {Path} Current basenames.
+	 *
+	 * @example
+	 * .basename()
+	 */
 	get basename () { return this._basename; }
 
 	/**
@@ -102,7 +118,7 @@ class ProjectDir {
 	 * @throws {Error} Failed searching base directory of project.
 	 *
 	 * @example
-	 * .setbasedir('./')
+	 * .basedir = './'
 	 */
 	set basedir (_path) {
 		type.isFile(_path) && (_path = path.dirname(_path));
@@ -120,6 +136,22 @@ class ProjectDir {
 		if (type.isRoot(basedir) || basedir == null) throw new Error(`_path(${_path}) has no parent node name of basename(${this.basename})`);
 		this._basedir = basedir;
 	}
+
+	/**
+	 * @public
+	 * @instance
+	 * @function basedir
+	 * @version 0.0.5
+	 * @since 0.0.1
+	 * @created 2018-01-22
+	 * @memberof module:index~ProjectDir
+	 * @description Get base directory of current project.
+	 *
+	 * @returns {Path} Current base directory's absolute path.
+	 *
+	 * @example
+	 * .basedir()
+	 */
 	get basedir () { return this._basedir; }
 
 	/**
@@ -133,16 +165,32 @@ class ProjectDir {
 	 * @description Set working directory based on current project's base directory.
 	 *
 	 * @param {ProjectPath} _path - Sub path of base directory.
-	 * @throws {Error} Out of range of root path.
+	 * @throws {Error} Out of range in root path.
 	 *
 	 * @example
-	 * .setwd('abcdef')
+	 * .wd = 'abcdef'
 	 */
 	set wd (_path) {
 		let wd = this.resolve(_path);
-		if (wd == null) throw new Error(`working directory path(${_path}) is out of root path's range`);
+		if (wd == null) throw new Error(`working directory path(${_path}) is out of range in root path.`);
 		wd != null && (this._workingDir = wd);
 	}
+	
+	/**
+	 * @public
+	 * @instance
+	 * @function getwd
+	 * @version 0.0.5
+	 * @since 0.0.1
+	 * @created 2018-01-22
+	 * @memberof module:index~ProjectDir
+	 * @description Get current working directory.
+	 *
+	 * @returns {Path} Current working directory's absolute path.
+	 *
+	 * @example
+	 * .wd()
+	 */
 	get wd () { return this._workingDir || this.basedir; }
 
 	/**
@@ -157,7 +205,7 @@ class ProjectDir {
 	 *
 	 * @param {ProjectPath} _path - to resolve path.
 	 * @throws {Error} _path is not a string type.
-	 * @returns {Path} resolved path.
+	 * @returns {null|Path} resolved path or null out of range in root path.
 	 *
 	 * @example
 	 * .resolve('/abcd/efgh')
@@ -170,7 +218,7 @@ class ProjectDir {
 			_path = path.resolve(this.wd || this.basedir, _path);
 		}
 
-		// out of project directory.
+		// out of range in project directory.
 		if (!path.equal(this.basedir, _path) &&
 			!path.isParent(this.basedir, _path)) 
 			return null;
