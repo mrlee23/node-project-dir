@@ -121,6 +121,7 @@ class ProjectDir {
 	 * .basedir = './'
 	 */
 	set basedir (_path) {
+		_path = path.resolve(_path);
 		type.isFile(_path) && (_path = path.dirname(_path));
 		if (!type.isDir(_path)) throw new Error(`_path(${_path}) does not exist directory.`);
 		if (type.isRoot(_path)) throw new Error(`_path(${_path}) cannot be a root.`);
@@ -135,6 +136,7 @@ class ProjectDir {
 		}
 		if (type.isRoot(basedir) || basedir == null) throw new Error(`_path(${_path}) has no parent node name of basename(${this.basename})`);
 		this._basedir = basedir;
+		this.wd = this.retrieve(_path);
 	}
 
 	/**
