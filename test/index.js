@@ -3,6 +3,7 @@ const oneMocha = require('one-mocha'),
 	  index = require('../index.js');
 
 let projectDir = new index(path.resolve(__dirname, 'test-project'), "node_modules");
+const GLOBAL = {};
 class indexTester {
 	test () {
 		oneMocha(
@@ -149,6 +150,52 @@ class indexTester {
 							abs: '/abcd',
 							realPath: path.resolve(__dirname, 'test-project/abcd')
 						}]]
+					}
+				},
+				{
+					method: (arg1, arg2) => {
+						projectDir.wd = '/aaaa';
+						return projectDir.equal(arg1, arg2);
+					},
+					name: 'equal',
+					this: projectDir,
+					test: {
+						assert: 'equal',
+						args: [['/aaaa/abcd', 'abcd', true],
+							   ['/aaaa/abcd', 'efgh', false],
+							   ['/aaaa/efgh', 'efgh', true],
+							   ['/aaaa', '../aaaa', true]]
+					}
+				},
+				{
+					method: (arg1, arg2, equality = []) => {
+						GLOBAL.toRoot = [];
+						projectDir.wd = '/bbbb';
+						projectDir.toRoot(arg1, arg2);
+						return GLOBAL.toRoot.every((elem, i) => {
+							if (projectDir.equal(elem, equality[i])) {
+								return true;
+							} else {
+								console.log("-"+elem);
+								console.log("+"+equality[i]);
+								return false;
+							}
+						});
+					},
+					name: 'toRoot',
+					this: projectDir,
+					test: {
+						assert: 'equal',
+						args: [
+							['/abcd/efgh', (p) => {
+								!Array.isArray(GLOBAL.toRoot) && (GLOBAL.toRoot = []);
+								GLOBAL.toRoot.push(projectDir.retrieve(p));
+							}, ['/abcd/efgh', '/abcd'], true],
+							['abcd/efgh', (p) => {
+								!Array.isArray(GLOBAL.toRoot) && (GLOBAL.toRoot = []);
+								GLOBAL.toRoot.push(projectDir.retrieve(p));
+							}, ['/bbbb/abcd/efgh', '/bbbb/abcd', '/bbbb'], true]
+						]
 					}
 				}
 			]

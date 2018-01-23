@@ -4,7 +4,7 @@
  * @author Dongsoo Lee <mrlee_23@naver.com>
  * @copyright 2018 Dongsoo Lee <mrlee_23@naver.com>
  * @module index
- * @version 0.1.1
+ * @version 0.1.2
  * @since 0.0.1
  * @created 2017-12-26
  *
@@ -39,7 +39,7 @@ const type = require('./lib/typeCheck.js'),
  * @class
  * @name ProjectDir
  * @classdesc project-dir main class
- * @version 0.1.1
+ * @version 0.1.2
  * @since 0.0.1
  * @created 2017-12-26
  */
@@ -48,7 +48,7 @@ class ProjectDir {
 	 * @public
 	 * @instance
 	 * @function constructor
-	 * @version 0.1.1
+	 * @version 0.1.2
 	 * @since 0.0.1
 	 * @created 2017-12-26
 	 * @memberof module:index~ProjectDir
@@ -70,7 +70,7 @@ class ProjectDir {
 	 * @public
 	 * @instance
 	 * @function set_basename
-	 * @version 0.1.1
+	 * @version 0.1.2
 	 * @since 0.0.1
 	 * @created 2017-12-26
 	 * @memberof module:index~ProjectDir
@@ -91,7 +91,7 @@ class ProjectDir {
 	 * @public
 	 * @instance
 	 * @function get_basename
-	 * @version 0.1.1
+	 * @version 0.1.2
 	 * @since 0.0.1
 	 * @created 2018-01-22
 	 * @memberof module:index~ProjectDir
@@ -108,7 +108,7 @@ class ProjectDir {
 	 * @public
 	 * @instance
 	 * @function set_basedir
-	 * @version 0.1.1
+	 * @version 0.1.2
 	 * @since 0.0.1
 	 * @created 2017-12-26
 	 * @memberof module:index~ProjectDir
@@ -143,7 +143,7 @@ class ProjectDir {
 	 * @public
 	 * @instance
 	 * @function get_basedir
-	 * @version 0.1.1
+	 * @version 0.1.2
 	 * @since 0.0.1
 	 * @created 2018-01-22
 	 * @memberof module:index~ProjectDir
@@ -160,7 +160,7 @@ class ProjectDir {
 	 * @public
 	 * @instance
 	 * @function set_wd
-	 * @version 0.1.1
+	 * @version 0.1.2
 	 * @since 0.0.1
 	 * @created 2017-12-26
 	 * @memberof module:index~ProjectDir
@@ -182,7 +182,7 @@ class ProjectDir {
 	 * @public
 	 * @instance
 	 * @function get_wd
-	 * @version 0.1.1
+	 * @version 0.1.2
 	 * @since 0.0.1
 	 * @created 2018-01-22
 	 * @memberof module:index~ProjectDir
@@ -199,7 +199,7 @@ class ProjectDir {
 	 * @public
 	 * @instance
 	 * @function resolve
-	 * @version 0.1.1
+	 * @version 0.1.2
 	 * @since 0.0.1
 	 * @created 2017-12-26
 	 * @memberof module:index~ProjectDir
@@ -232,8 +232,8 @@ class ProjectDir {
 	 * @public
 	 * @instance
 	 * @function retrieve
-	 * @version 0.1.1
-	 * @since 0.1.1
+	 * @version 0.1.2
+	 * @since 0.0.5
 	 * @created 2017-12-27
 	 * @memberof module:index~ProjectDir
 	 * @description Retrieve project path from absolute real path.
@@ -259,7 +259,7 @@ class ProjectDir {
 	 * @public
 	 * @instance
 	 * @function parse
-	 * @version 0.1.1
+	 * @version 0.1.2
 	 * @since 0.0.1
 	 * @created 2017-12-26
 	 * @memberof module:index~ProjectDir
@@ -284,6 +284,60 @@ class ProjectDir {
 			realPath: path.resolve(this.wd, rPath)
 		};
 		return ret;
+	}
+
+	/**
+	 * @public
+	 * @instance
+	 * @function equal
+	 * @version 0.1.2
+	 * @since 0.1.2
+	 * @created 2018-01-23
+	 * @memberof module:index~ProjectDir
+	 * @description Check same directory in project directory
+	 *
+	 * @param {ProjectPath|ProjectAbsPath} _path1 - To check project path
+	 * @param {ProjectPath|ProjectAbsPath} _path2 - To check project path
+	 * @throws {Error} Type error
+	 * @returns {boolean} If same directory, returns true
+	 *
+	 * @example
+	 * .equal('abcd', '/abcd')
+	 */
+	equal (_path1, _path2) {
+		if (typeof _path1 !== 'string') throw new Error(`_path1(${_path1}) is not a string type.`);
+		if (typeof _path2 !== 'string') throw new Error(`_path2(${_path2}) is not a string type.`);
+		let p1 = this.resolve(_path1),
+			p2 = this.resolve(_path2);
+		return path.equal(p1, p2);
+	}
+
+	/**
+	 * @public
+	 * @instance
+	 * @function toRoot
+	 * @version 0.1.2
+	 * @since 0.1.2
+	 * @created 2018-01-23
+	 * @memberof module:index~ProjectDir
+	 * @description Go to root directory
+	 *
+	 * @param {ProjectPath|ProjectAbsPath} _path - Start point of project path
+	 * @param {Function} func - Recursively executed function. the argument is current path.
+	 * @returns {Path} Root directory of project
+	 *
+	 * @example
+	 * .toRoot()
+	 */
+	toRoot (_path, ...args) {
+		let callback = args.pop(),
+			options = args[0] || {};
+		options = Object.assign({
+			resolve: undefined,
+			reliable: undefined,
+			checker: (_p) => path.equal(_p, this.basedir)
+		}, options);
+		return path.toRoot(this.resolve(_path), options, callback);
 	}
 }
 
