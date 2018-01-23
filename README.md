@@ -42,16 +42,17 @@ When the argument takes `ProjectPath`, do not use absolute path in real file sys
 This moudle handles root as sub directory of base directory when argument is `ProjectPath`.
 
 eg. If base directory is "/home/user/abcd", the `Path`'s "/efgh" means "/efgh" and the `ProjectPath`'s "/efgh" means "/home/user/abcd/efgh".
-### constructor
+
+- `constructor(<Path>, <Query>)` : Search a `Query` matched directory from `Path` to root path. and set basedir.
 ### getter/setter
 - `basename <Query>` : get/set basename for dominating file.
 - `basedir <Path> ` : get/set project's base directory.
 - `wd <Path>` : get/set project's working directory.
 
-### project path parsing
-- `resolve <ProjectPath>` : Resolving path based on basedir
-- `retrieve <AbsPath>` : Retrieving project path from absolute real path.
-- `parse <ProjectPath>` : parsing path based on basedir. below output is result of path(+ sign means `path.resolve`, * sign means `path.relative`, path means argument, others are property name).
+### methods
+- `resolve(<ProjectPath>) -> <Path>` : Resolving path based on basedir
+- `retrieve(<Path>) -> <ProjectAbsPath>` : Retrieving project path from absolute real path.
+- `parse(<ProjectPath>) -> <Object>` : parsing path based on basedir. below output is result of path(+ sign means `path.resolve`, * sign means `path.relative`, path means argument, others are property name).
 ```javascript
 {
 	root: <basedir>,
@@ -62,3 +63,5 @@ eg. If base directory is "/home/user/abcd", the `Path`'s "/efgh" means "/efgh" a
 	realPath: <wd+path>
 }
 ```
+- `equal(<ProjectPath>, <ProjectPath>) -> <boolean>` : Compare with two project path is same.
+- `toRoot(<ProjectPath>, [<Object>, ]<Function>)` : Recursively access from `ProjectPath` to `basedir` and send an argument of current path to `Function`.
