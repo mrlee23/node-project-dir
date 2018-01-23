@@ -4,7 +4,7 @@
  * @author Dongsoo Lee <mrlee_23@naver.com>
  * @copyright 2018 Dongsoo Lee <mrlee_23@naver.com>
  * @module index
- * @version 0.1.2
+ * @version 0.1.3
  * @since 0.0.1
  * @created 2017-12-26
  *
@@ -39,7 +39,7 @@ const type = require('./lib/typeCheck.js'),
  * @class
  * @name ProjectDir
  * @classdesc project-dir main class
- * @version 0.1.2
+ * @version 0.1.3
  * @since 0.0.1
  * @created 2017-12-26
  */
@@ -48,7 +48,7 @@ class ProjectDir {
 	 * @public
 	 * @instance
 	 * @function constructor
-	 * @version 0.1.2
+	 * @version 0.1.3
 	 * @since 0.0.1
 	 * @created 2017-12-26
 	 * @memberof module:index~ProjectDir
@@ -58,7 +58,11 @@ class ProjectDir {
 	 * @param {Query} basename - Dominating file or directory names.
 	 *
 	 * @example
-	 * .constructor('./', 'node_modules')
+	 * const myProject = new ProjectDir('./', 'node_modules')
+	 *
+	 * const myProject2 = new ProjectDir('./', '.git')
+	 *
+	 * const myProject3 = new ProjectDir('./', ['node_modules', '.git']) // has node_modules and .git directory
 	 */
 	constructor(currentPath, basename) {
 		(basename == null) && (this.basename = [".git", "package.json"]);
@@ -70,7 +74,7 @@ class ProjectDir {
 	 * @public
 	 * @instance
 	 * @function set_basename
-	 * @version 0.1.2
+	 * @version 0.1.3
 	 * @since 0.0.1
 	 * @created 2017-12-26
 	 * @memberof module:index~ProjectDir
@@ -80,7 +84,7 @@ class ProjectDir {
 	 * @throws {Error} Not a Query type.
 	 *
 	 * @example
-	 * .basename = ['.git', 'package.json']
+	 * myProject.basename = ['.git', 'package.json']
 	 */
 	set basename (basename) {
 		if (!type.isQuery(basename)) throw new Error(`basename(${basename}) is not a Query type.`);
@@ -91,7 +95,7 @@ class ProjectDir {
 	 * @public
 	 * @instance
 	 * @function get_basename
-	 * @version 0.1.2
+	 * @version 0.1.3
 	 * @since 0.0.1
 	 * @created 2018-01-22
 	 * @memberof module:index~ProjectDir
@@ -100,7 +104,7 @@ class ProjectDir {
 	 * @returns {Path} Current basenames.
 	 *
 	 * @example
-	 * .basename()
+	 * myProject.basename // => ['.git', 'package.json']
 	 */
 	get basename () { return this._basename; }
 
@@ -108,7 +112,7 @@ class ProjectDir {
 	 * @public
 	 * @instance
 	 * @function set_basedir
-	 * @version 0.1.2
+	 * @version 0.1.3
 	 * @since 0.0.1
 	 * @created 2017-12-26
 	 * @memberof module:index~ProjectDir
@@ -118,7 +122,11 @@ class ProjectDir {
 	 * @throws {Error} Failed searching base directory of project.
 	 *
 	 * @example
-	 * .basedir = './'
+	 * myProject.basedir = './abcd'; // => '/home/user/myProject'
+	 * myProject.wd; // => '/home/user/myProject/abcd'
+	 *
+	 * myProject.basedir = './abcd/efgh'; // => '/home/user/myProject'
+	 * myProject.wd; // => '/home/user/myProject/abcd/efgh'
 	 */
 	set basedir (_path) {
 		_path = path.resolve(_path);
@@ -143,7 +151,7 @@ class ProjectDir {
 	 * @public
 	 * @instance
 	 * @function get_basedir
-	 * @version 0.1.2
+	 * @version 0.1.3
 	 * @since 0.0.1
 	 * @created 2018-01-22
 	 * @memberof module:index~ProjectDir
@@ -152,7 +160,7 @@ class ProjectDir {
 	 * @returns {Path} Current base directory's absolute path.
 	 *
 	 * @example
-	 * .basedir()
+	 * myProject.basedir // => '/home/user/myProject'
 	 */
 	get basedir () { return this._basedir; }
 
@@ -160,7 +168,7 @@ class ProjectDir {
 	 * @public
 	 * @instance
 	 * @function set_wd
-	 * @version 0.1.2
+	 * @version 0.1.3
 	 * @since 0.0.1
 	 * @created 2017-12-26
 	 * @memberof module:index~ProjectDir
@@ -170,7 +178,15 @@ class ProjectDir {
 	 * @throws {Error} Out of range in root path.
 	 *
 	 * @example
-	 * .wd = 'abcdef'
+	 * // root
+	 * myProject.wd = '/'; // => '/home/user/myProject'
+	 * 
+	 * // relative path
+	 * myProject.wd = 'abcd'; // => '/home/user/myProject/abcd'
+	 * myProject.wd = 'efgh'; // => '/home/user/myProject/abcd/efgh'
+	 * myProject.wd = '../'; // => '/home/user/myProject/abcd'
+	 * 
+	 * myProject.wd = '/aaaa'; // => '/home/user/myProject/aaaa'
 	 */
 	set wd (_path) {
 		let wd = this.resolve(_path);
@@ -182,7 +198,7 @@ class ProjectDir {
 	 * @public
 	 * @instance
 	 * @function get_wd
-	 * @version 0.1.2
+	 * @version 0.1.3
 	 * @since 0.0.1
 	 * @created 2018-01-22
 	 * @memberof module:index~ProjectDir
@@ -191,7 +207,7 @@ class ProjectDir {
 	 * @returns {Path} Current working directory's absolute path.
 	 *
 	 * @example
-	 * .wd()
+	 * myProject.wd // => '/home/user/myProject/abcd'
 	 */
 	get wd () { return this._workingDir || this.basedir; }
 
@@ -199,7 +215,7 @@ class ProjectDir {
 	 * @public
 	 * @instance
 	 * @function resolve
-	 * @version 0.1.2
+	 * @version 0.1.3
 	 * @since 0.0.1
 	 * @created 2017-12-26
 	 * @memberof module:index~ProjectDir
@@ -210,7 +226,14 @@ class ProjectDir {
 	 * @returns {null|Path} resolved path or null out of range in root path.
 	 *
 	 * @example
-	 * .resolve('/abcd/efgh')
+	 * myProject.wd = '/';
+	 * myProject.resolve('abcd'); // => '/home/user/myProject/abcd'
+	 * 
+	 * myProject.wd = '/aaaa';
+	 * myProject.resolve('bbbb'); // => '/home/user/myProject/aaaa/bbbb'
+	 * 
+	 * myProject.wd = '/aaaa';
+	 * myProject.resolve('/abcd'); // => '/home/user/myProject/abcd'
 	 */
 	resolve (_path) {
 		if (typeof _path !== 'string') throw new Error(`_path(${_path}) is not a string type.`);
@@ -232,7 +255,7 @@ class ProjectDir {
 	 * @public
 	 * @instance
 	 * @function retrieve
-	 * @version 0.1.2
+	 * @version 0.1.3
 	 * @since 0.0.5
 	 * @created 2017-12-27
 	 * @memberof module:index~ProjectDir
@@ -243,7 +266,13 @@ class ProjectDir {
 	 * @returns {ProjectAbsPath} absolute project path.
 	 *
 	 * @example
-	 * .retrieve(/home/user/abcd/efgh) // => /abcd/efgh (if /home/user is root)
+	 * myProject.retrieve('/home/user/myProject/abcd'); // => '/abcd'
+	 * 
+	 * myProject.retrieve('/home/user/myProject/abcd/efgh'); // => '/abcd/efgh'
+	 * 
+	 * myProject.retrieve('/home/user/myProject'); // => '/'
+	 * 
+	 * myProject.retrieve('/home/user'); // => 'null'
 	 */
 	retrieve (_path) {
 		if (typeof _path !== 'string') throw new Error(`_path(${_path}) is not a string type.`);
@@ -259,7 +288,7 @@ class ProjectDir {
 	 * @public
 	 * @instance
 	 * @function parse
-	 * @version 0.1.2
+	 * @version 0.1.3
 	 * @since 0.0.1
 	 * @created 2017-12-26
 	 * @memberof module:index~ProjectDir
@@ -270,7 +299,26 @@ class ProjectDir {
 	 * @returns {Object} parsed path's object.
 	 *
 	 * @example
-	 * .parse('abcd')
+	 * myProject.parse('/abcd');
+	 * // {
+	 * //   root: '/home/user/myProject',
+	 * //   names: '.git',
+	 * //   wd: '/home/user/myProject',
+	 * //   path: 'abcd',
+	 * //   abs: '/abcd',
+	 * //   realPath: '/home/user/myProject/abcd'
+	 * // }
+	 * 
+	 * myProject.wd = '/abcd';
+	 * myProject.parse('efgh');
+	 * // {
+	 * //   root: '/home/user/myProject',
+	 * //   names: '.git',
+	 * //   wd: '/home/user/myProject/abcd',
+	 * //   path: 'efgh',
+	 * //   abs: '/abcd/efgh',
+	 * //   realPath: '/home/user/myProject/abcd/efgh'
+	 * // }
 	 */
 	parse (_path) {
 		if (typeof _path !== 'string') throw new Error(`_path(${_path}) is not a string type.`);
@@ -290,7 +338,7 @@ class ProjectDir {
 	 * @public
 	 * @instance
 	 * @function equal
-	 * @version 0.1.2
+	 * @version 0.1.3
 	 * @since 0.1.2
 	 * @created 2018-01-23
 	 * @memberof module:index~ProjectDir
@@ -302,7 +350,12 @@ class ProjectDir {
 	 * @returns {boolean} If same directory, returns true
 	 *
 	 * @example
-	 * .equal('abcd', '/abcd')
+	 * myProject.wd = '/abcd'
+	 * console.log(myProject.wd); // => '/home/user/myProject/abcd'
+	 * 
+	 * myProject.equal('/abcd/efgh', 'efgh'); // => true
+	 * myProject.equal('/aaaa', '../aaaa'); // => true
+	 * myProject.equal('/abcd', 'abcd'); // => false
 	 */
 	equal (_path1, _path2) {
 		if (typeof _path1 !== 'string') throw new Error(`_path1(${_path1}) is not a string type.`);
@@ -316,7 +369,7 @@ class ProjectDir {
 	 * @public
 	 * @instance
 	 * @function toRoot
-	 * @version 0.1.2
+	 * @version 0.1.3
 	 * @since 0.1.2
 	 * @created 2018-01-23
 	 * @memberof module:index~ProjectDir
@@ -327,7 +380,13 @@ class ProjectDir {
 	 * @returns {Path} Root directory of project
 	 *
 	 * @example
-	 * .toRoot()
+	 * ### equal
+	 * myProject.wd = '/abcd'
+	 * console.log(myProject.wd); // => '/home/user/myProject/abcd'
+	 * 
+	 * myProject.equal('/abcd/efgh', 'efgh'); // => true
+k	 * myProject.equal('/aaaa', '../aaaa'); // => true
+	 * myProject.equal('/abcd', 'abcd'); // => false
 	 */
 	toRoot (_path, ...args) {
 		let callback = args.pop(),
