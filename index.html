@@ -53,78 +53,21 @@
 <a href="https://github.com/mrlee23/node-project-dir/blob/master/LICENSE"><img src="https://img.shields.io/github/license/mrlee23/node-project-dir.svg" alt="License"></a></p>
 <p><a href="https://nodei.co/npm/project-dir/"><img src="https://nodei.co/npm/project-dir.png" alt="NPM"></a></p>
 <blockquote>
-<p>Search the project's root directory.</p>
+<p>Manipulate project directories and files.</p>
 </blockquote>
 <h2>Install</h2><pre class="prettyprint source lang-shell"><code>npm install project-dir</code></pre><h2>Documentation</h2><ul>
 <li><a href="https://mrlee23.github.io/node-project-dir/">on GitHub Pages</a></li>
 </ul>
-<h2>How to use</h2><pre class="prettyprint source"><code>myProject/
-├── .git
-├── node_modules
-├── aaaa
-│   └── bbbb
-└── abcd
-    └── efgh</code></pre><h3>require</h3><pre class="prettyprint source lang-javascript"><code>const ProjectDir = require('project-dir');</code></pre><h3>on NodeJS</h3><pre class="prettyprint source lang-javascript"><code>const myProject = new ProjectDir('./', 'node_modules')
+<h2>Unit Test</h2><h3>Dev Depencencies</h3><ul>
+<li><a href="https://github.com/mochajs/mocha">mocha</a> : unit test framework</li>
+<li><a href="https://github.com/mrlee23/node-one-mocha">one-mocha</a> : mocha tester generating module</li>
+<li><a href="https://github.com/jsdoc3/jsdoc">js-doc</a> : documentation generator</li>
+<li><a href="https://github.com/Nijikokun/minami">minami</a> : jsdoc template</li>
+</ul>
+<h3>Test</h3><pre class="prettyprint source lang-shell"><code>npm test</code></pre><h2>How to use</h2><pre class="prettyprint source lang-javascript"><code>const ProjectDir = require('project-dir');
+const myProjectDir = new ProjectDir('./', 'node_modules') // searching base directory has a node_modules directory
 
-console.log(myProject.basedir); // => '/home/user/myProject'
-console.log(myProject.wd); // => '/home/user/myProject'</code></pre><h3>on git repository</h3><pre class="prettyprint source lang-javascript"><code>const myProject = new ProjectDir('./', '.git')
-
-console.log(myProject.basedir); // => '/home/user/myProject'
-console.log(myProject.wd); // => '/home/user/myProject'</code></pre><h3>make sure NodeJS with git repository</h3><pre class="prettyprint source lang-javascript"><code>const myProject = new ProjectDir('./', ['node_modules', '.git'])
-
-console.log(myProject.basedir); // => '/home/user/myProject'
-console.log(myProject.wd); // => '/home/user/myProject'</code></pre><h3>set basename</h3><pre class="prettyprint source lang-javascript"><code>console.log(myProject.basename); // => ['node_modules', '.git']
-
-myProject.basename = '.git'
-
-console.log(myProject.basename); // => '.git'</code></pre><h3>set basedir</h3><pre class="prettyprint source lang-javascript"><code>myProject.basedir = './abcd'; // => '/home/user/myProject'
-myProject.wd; // => '/home/user/myProject/abcd'
-
-myProject.basedir = './abcd/efgh'; // => '/home/user/myProject'
-myProject.wd; // => '/home/user/myProject/abcd/efgh'</code></pre><h3>set wd (working directory)</h3><pre class="prettyprint source lang-javascript"><code>// root
-myProject.wd = '/'; // => '/home/user/myProject'
-
-// relative path
-myProject.wd = 'abcd'; // => '/home/user/myProject/abcd'
-myProject.wd = 'efgh'; // => '/home/user/myProject/abcd/efgh'
-myProject.wd = '../'; // => '/home/user/myProject/abcd'
-
-myProject.wd = '/aaaa'; // => '/home/user/myProject/aaaa'</code></pre><h3>resolve</h3><pre class="prettyprint source lang-javascript"><code>myProject.wd = '/';
-myProject.resolve('abcd'); // => '/home/user/myProject/abcd'
-
-myProject.wd = '/aaaa';
-myProject.resolve('bbbb'); // => '/home/user/myProject/aaaa/bbbb'
-
-myProject.wd = '/aaaa';
-myProject.resolve('/abcd'); // => '/home/user/myProject/abcd'</code></pre><h3>retrieve</h3><pre class="prettyprint source lang-javascript"><code>myProject.retrieve('/home/user/myProject/abcd'); // => '/abcd'
-
-myProject.retrieve('/home/user/myProject/abcd/efgh'); // => '/abcd/efgh'
-
-myProject.retrieve('/home/user/myProject'); // => '/'
-
-myProject.retrieve('/home/user'); // => 'null'</code></pre><h3>parse</h3><pre class="prettyprint source lang-javascript"><code>myProject.parse('/abcd');</code></pre><pre class="prettyprint source lang-javascript"><code>{
-  root: '/home/user/myProject',
-  names: '.git',
-  wd: '/home/user/myProject',
-  path: 'abcd',
-  abs: '/abcd',
-  realPath: '/home/user/myProject/abcd'
-}</code></pre><pre class="prettyprint source lang-javascript"><code>myProject.wd = '/abcd';
-myProject.parse('efgh');</code></pre><pre class="prettyprint source lang-javascript"><code>{
-  root: '/home/user/myProject',
-  names: '.git',
-  wd: '/home/user/myProject/abcd',
-  path: 'efgh',
-  abs: '/abcd/efgh',
-  realPath: '/home/user/myProject/abcd/efgh'
-}</code></pre><h3>equal</h3><pre class="prettyprint source lang-javascript"><code>myProject.wd = '/abcd'
-console.log(myProject.wd); // => '/home/user/myProject/abcd'
-
-myProject.equal('/abcd/efgh', 'efgh'); // => true
-myProject.equal('/aaaa', '../aaaa'); // => true
-myProject.equal('/abcd', 'abcd'); // => false</code></pre><h3>toRoot</h3><pre class="prettyprint source lang-javascript"><code>let paths = [];
-myProject.toRoot('/abcd/efgh', (curPath) => paths.push(curPath));
-console.log(curPath); // => ['/abcd/efgh', '/abcd']</code></pre><h2>API</h2><p>Don't confuse <code>ProjectPath</code> argument. It has a difference meaning with normal path.
+console.log(myProjectDir.resolve('/abcd'));</code></pre><h2>API</h2><p>Don't confuse <code>ProjectPath</code> argument. It has a difference meaning with normal path.
 When the argument takes <code>ProjectPath</code>, do not use absolute path in real file system.
 This moudle handles root as sub directory of base directory when argument is <code>ProjectPath</code>.</p>
 <p>eg. If base directory is &quot;/home/user/abcd&quot;, the <code>Path</code>'s &quot;/efgh&quot; means &quot;/efgh&quot; and the <code>ProjectPath</code>'s &quot;/efgh&quot; means &quot;/home/user/abcd/efgh&quot;.</p>
@@ -147,14 +90,7 @@ This moudle handles root as sub directory of base directory when argument is <co
 }</code></pre></li>
 <li><code>equal(&lt;ProjectPath&gt;, &lt;ProjectPath&gt;) -&gt; &lt;boolean&gt;</code> : Compare with two project path is same.</li>
 <li><code>toRoot(&lt;ProjectPath&gt;, [&lt;Object&gt;, ]&lt;Function&gt;)</code> : Recursively access from <code>ProjectPath</code> to <code>basedir</code> and send an argument of current path to <code>Function</code>.</li>
-</ul>
-<h2>Unit Test</h2><h3>Dev Depencencies</h3><ul>
-<li><a href="https://github.com/mochajs/mocha">mocha</a> : unit test framework</li>
-<li><a href="https://github.com/mrlee23/node-one-mocha">one-mocha</a> : mocha tester generating module</li>
-<li><a href="https://github.com/jsdoc3/jsdoc">js-doc</a> : documentation generator</li>
-<li><a href="https://github.com/Nijikokun/minami">minami</a> : jsdoc template</li>
-</ul>
-<h3>Test</h3><pre class="prettyprint source lang-shell"><code>npm test</code></pre></article>
+</ul></article>
     </section>
 
 
@@ -167,7 +103,7 @@ This moudle handles root as sub directory of base directory when argument is <co
 <br class="clear">
 
 <footer>
-    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Jan 23 2018 03:27:55 GMT+0000 (UTC) using the Minami theme.
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Jan 23 2018 03:28:16 GMT+0000 (UTC) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>
