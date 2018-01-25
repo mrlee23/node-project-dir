@@ -327,9 +327,9 @@ class ProjectDir {
 			root: this.basedir,
 			names: this.basename,
 			wd: this.wd,
-			path: path.relative(this.wd, rPath),
-			abs: "/"+path.relative(this.basedir, path.resolve(this.wd, rPath)),
-			realPath: path.resolve(this.wd, rPath)
+			path: rPath == null ? null : path.relative(this.wd, rPath),
+			abs: rPath == null ? null : "/"+path.relative(this.basedir, path.resolve(this.wd, rPath)),
+			realPath: path.resolve(this.wd, rPath == null ? _path.replace(/^\//, '') : rPath)
 		};
 		return ret;
 	}
