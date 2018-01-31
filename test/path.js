@@ -25,6 +25,27 @@ class pathTester {
 				]
 			},
 			 {
+				method: path.fromRoot,
+				this: path,
+				name: 'fromRoot',
+				test:
+				[
+					{
+						assert: 'equal',
+						args: [[__dirname, () => {}, __dirname],
+							   // ["./", () => {}, "./"],
+							   ["./", {}, () => {}, path.resolve('./')],
+							   ["../", {}, () => {}, path.resolve('../')],
+							   [__dirname, (path) => path=='/', '/']]
+					},
+					{
+						assert: 'throws',
+						args: [[__dirname, null, Error],
+							   [__dirname+"/not_exists_path", Error]]
+					}
+				]
+			 },
+			 {
 				 method: path.locateBase,
 				 this: path,
 				 name: 'locateBase',

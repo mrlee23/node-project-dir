@@ -210,6 +210,42 @@ class indexTester {
 							}, ['/bbbb/abcd/efgh', '/bbbb/abcd', '/bbbb'], true]
 						]
 					}
+				},
+				{
+					method: (arg1, arg2, equality = []) => {
+						GLOBAL.fromRoot = [];
+						projectDir.wd = '/bbbb';
+						projectDir.fromRoot(arg1, arg2);
+						return GLOBAL.fromRoot.every((elem, i) => {
+							if (projectDir.equal(elem, equality[i])) {
+								return true;
+							} else {
+								console.log("-"+elem);
+								console.log("+"+equality[i]);
+								return false;
+							}
+						});
+					},
+					name: 'fromRoot',
+					this: projectDir,
+					test: {
+						assert: 'equal',
+						args: [
+							['/abcd/efgh', (p) => {
+								!Array.isArray(GLOBAL.fromRoot) && (GLOBAL.fromRoot = []);
+								GLOBAL.fromRoot.push(projectDir.retrieve(p));
+							}, ['/', '/abcd', '/abcd/efgh'], true],
+							['abcd/efgh', (p) => {
+								!Array.isArray(GLOBAL.fromRoot) && (GLOBAL.fromRoot = []);
+								GLOBAL.fromRoot.push(projectDir.retrieve(p));
+							}, ['/', '/bbbb', '/bbbb/abcd', '/bbbb/abcd/efgh'], true],
+							['/abcd/efgh/hijk', (p) => {
+								!Array.isArray(GLOBAL.fromRoot) && (GLOBAL.fromRoot = []);
+								GLOBAL.fromRoot.push(projectDir.retrieve(p));
+								return projectDir.retrieve(p) == '/abcd/efgh';
+							}, ['/', '/abcd', '/abcd/efgh'], true]
+						]
+					}
 				}
 			]
 		);

@@ -4,7 +4,7 @@
  * @author Dongsoo Lee <mrlee_23@naver.com>
  * @copyright 2018 Dongsoo Lee <mrlee_23@naver.com>
  * @module index
- * @version 0.1.3
+ * @version 0.1.4
  * @since 0.0.1
  * @created 2017-12-26
  *
@@ -39,7 +39,7 @@ const type = require('./lib/typeCheck.js'),
  * @class
  * @name ProjectDir
  * @classdesc project-dir main class
- * @version 0.1.3
+ * @version 0.1.4
  * @since 0.0.1
  * @created 2017-12-26
  */
@@ -48,7 +48,7 @@ class ProjectDir {
 	 * @public
 	 * @instance
 	 * @function constructor
-	 * @version 0.1.3
+	 * @version 0.1.4
 	 * @since 0.0.1
 	 * @created 2017-12-26
 	 * @memberof module:index~ProjectDir
@@ -74,7 +74,7 @@ class ProjectDir {
 	 * @public
 	 * @instance
 	 * @function set_basename
-	 * @version 0.1.3
+	 * @version 0.1.4
 	 * @since 0.0.1
 	 * @created 2017-12-26
 	 * @memberof module:index~ProjectDir
@@ -95,7 +95,7 @@ class ProjectDir {
 	 * @public
 	 * @instance
 	 * @function get_basename
-	 * @version 0.1.3
+	 * @version 0.1.4
 	 * @since 0.0.1
 	 * @created 2018-01-22
 	 * @memberof module:index~ProjectDir
@@ -112,7 +112,7 @@ class ProjectDir {
 	 * @public
 	 * @instance
 	 * @function set_basedir
-	 * @version 0.1.3
+	 * @version 0.1.4
 	 * @since 0.0.1
 	 * @created 2017-12-26
 	 * @memberof module:index~ProjectDir
@@ -151,7 +151,7 @@ class ProjectDir {
 	 * @public
 	 * @instance
 	 * @function get_basedir
-	 * @version 0.1.3
+	 * @version 0.1.4
 	 * @since 0.0.1
 	 * @created 2018-01-22
 	 * @memberof module:index~ProjectDir
@@ -168,7 +168,7 @@ class ProjectDir {
 	 * @public
 	 * @instance
 	 * @function set_wd
-	 * @version 0.1.3
+	 * @version 0.1.4
 	 * @since 0.0.1
 	 * @created 2017-12-26
 	 * @memberof module:index~ProjectDir
@@ -198,7 +198,7 @@ class ProjectDir {
 	 * @public
 	 * @instance
 	 * @function get_wd
-	 * @version 0.1.3
+	 * @version 0.1.4
 	 * @since 0.0.1
 	 * @created 2018-01-22
 	 * @memberof module:index~ProjectDir
@@ -215,7 +215,7 @@ class ProjectDir {
 	 * @public
 	 * @instance
 	 * @function resolve
-	 * @version 0.1.3
+	 * @version 0.1.4
 	 * @since 0.0.1
 	 * @created 2017-12-26
 	 * @memberof module:index~ProjectDir
@@ -255,7 +255,7 @@ class ProjectDir {
 	 * @public
 	 * @instance
 	 * @function retrieve
-	 * @version 0.1.3
+	 * @version 0.1.4
 	 * @since 0.0.5
 	 * @created 2017-12-27
 	 * @memberof module:index~ProjectDir
@@ -288,7 +288,7 @@ class ProjectDir {
 	 * @public
 	 * @instance
 	 * @function parse
-	 * @version 0.1.3
+	 * @version 0.1.4
 	 * @since 0.0.1
 	 * @created 2017-12-26
 	 * @memberof module:index~ProjectDir
@@ -338,7 +338,7 @@ class ProjectDir {
 	 * @public
 	 * @instance
 	 * @function equal
-	 * @version 0.1.3
+	 * @version 0.1.4
 	 * @since 0.1.2
 	 * @created 2018-01-23
 	 * @memberof module:index~ProjectDir
@@ -369,24 +369,15 @@ class ProjectDir {
 	 * @public
 	 * @instance
 	 * @function toRoot
-	 * @version 0.1.3
+	 * @version 0.1.4
 	 * @since 0.1.2
 	 * @created 2018-01-23
 	 * @memberof module:index~ProjectDir
 	 * @description Go to root directory
 	 *
-	 * @param {ProjectPath|ProjectAbsPath} _path - Start point of project path
+	 * @param {ProjectPath|ProjectAbsPath} _path - Start point of project path.
 	 * @param {Function} func - Recursively executed function. the argument is current path.
-	 * @returns {Path} Root directory of project
-	 *
-	 * @example
-	 * ### equal
-	 * myProject.wd = '/abcd'
-	 * console.log(myProject.wd); // => '/home/user/myProject/abcd'
-	 * 
-	 * myProject.equal('/abcd/efgh', 'efgh'); // => true
-k	 * myProject.equal('/aaaa', '../aaaa'); // => true
-	 * myProject.equal('/abcd', 'abcd'); // => false
+	 * @returns {Path} Root directory of project.
 	 */
 	toRoot (_path, ...args) {
 		let callback = args.pop(),
@@ -397,6 +388,31 @@ k	 * myProject.equal('/aaaa', '../aaaa'); // => true
 			checker: (_p) => path.equal(_p, this.basedir)
 		}, options);
 		return path.toRoot(this.resolve(_path), options, callback);
+	}
+
+	/**
+	 * @public
+	 * @instance
+	 * @function fromRoot
+	 * @version 0.1.4
+	 * @since 0.1.4
+	 * @created 2018-02-01 
+	 * @memberof module:index~ProjectDir
+	 * @description Go to _path from root path of current project.
+	 *
+	 * @param {ProjectPath|ProjectAbsPath} _path - End point of project path.
+	 * @param {Function} func - Recursively executed function. the argument is current path.
+	 * @returns {Path} _path directory of project if no breaks.
+	 */
+	fromRoot (_path, ...args) {
+		let callback = args.pop(),
+			options = args[0] || {};
+		options = Object.assign({
+			reliable: undefined,
+			start: this.basedir,
+			checker: (_p) => path.equal(_p, _path)
+		}, options);
+		return path.fromRoot(this.resolve(_path), options, callback);
 	}
 }
 
