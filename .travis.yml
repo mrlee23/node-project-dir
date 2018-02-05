@@ -3,7 +3,7 @@ notifications:
       - mrlee_23@naver.com
 env:
   global:
-      - GH_TOKEN=$G
+      - GH_TOKEN=$GITHUB_TOKEN
       - PUBLISHED_DIR=".published"
 language: node_js
 node_js:
